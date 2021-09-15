@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  #flyway properties only for local start
+  flyway:
+    enabled: true
+    table: schema_version
+    schemas: recipe_catalog
+  ##Database settings
+  datasource:
+    url: jdbc:postgresql://localhost:5432/recipe_catalog
+    username: recipe_catalog
+    password: recipe_catalog
