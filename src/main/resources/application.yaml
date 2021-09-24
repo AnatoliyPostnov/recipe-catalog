@@ -7,8 +7,12 @@ spring:
     enabled: true
     table: schema_version
     schemas: recipe_catalog
+  codec:
+    max-in-memory-size: 16MB
   ##Database settings
   datasource:
-    url: jdbc:postgresql://localhost:5432/recipe_catalog
-    username: recipe_catalog
-    password: recipe_catalog
+    postgres:
+      url: jdbc:postgresql://localhost:5432/recipe_catalog
+      username: recipe_catalog
+      password: recipe_catalog
+      driver-class-name: org.postgresql.Driver
