@@ -20,6 +20,17 @@ comment on column registration_user.email is 'email пользователя';
 comment on column registration_user.password is 'Пароль пользователя';
 comment on column registration_user.phone is 'Телефон пользователя';
 
+create table picture (
+                         name        varchar             primary key,
+                         path        varchar             not null,
+                         extension   varchar             not null
+);
+
+comment on table picture is 'Метаинформация о картинке';
+comment on column picture.name is 'Название картинки (уникальное)';
+comment on column picture.path is 'Абсолютный путь к файлу';
+comment on column picture.extension is 'Расширение картинки';
+
 create type complexity as enum ('EASILY', 'MEDIUM', 'HARD', 'VERY_HARD');
 
 create table recipe
@@ -102,17 +113,6 @@ create table cuisine_recipe (
 comment on table cuisine_recipe is 'Смежная таблица, которая реализует соотношение ManyToMany';
 comment on column cuisine_recipe.name is 'Ссылка на cuisine';
 comment on column cuisine_recipe.recipe_id is 'Ссылка на recipe';
-
-create table picture (
-    name        varchar             primary key,
-    path        varchar             not null,
-    extension   varchar             not null
-);
-
-comment on table picture is 'Метаинформация о картинке';
-comment on column picture.name is 'Название картинки (уникальное)';
-comment on column picture.path is 'Абсолютный путь к файлу';
-comment on column picture.extension is 'Расширение картинки';
 
 create table step_cooking (
     id              serial              primary key,
