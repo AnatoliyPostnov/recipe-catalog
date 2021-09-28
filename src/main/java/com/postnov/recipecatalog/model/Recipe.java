@@ -41,5 +41,4 @@ public class Recipe {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "picture_name", referencedColumnName = "name", nullable = false)
     private Picture picture;
-
 }
