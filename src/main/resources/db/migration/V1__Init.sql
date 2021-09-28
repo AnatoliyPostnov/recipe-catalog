@@ -1,3 +1,6 @@
+create sequence recipe_seq;
+create sequence step_cooking_seq;
+
 create type user_role as enum ('ADMIN', 'USER');
 
 create table registration_user (
@@ -21,9 +24,9 @@ comment on column registration_user.password is 'Пароль пользоват
 comment on column registration_user.phone is 'Телефон пользователя';
 
 create table picture (
-                         name        varchar             primary key,
-                         path        varchar             not null,
-                         extension   varchar             not null
+    name        varchar             primary key,
+    path        varchar             not null,
+    extension   varchar             not null
 );
 
 comment on table picture is 'Метаинформация о картинке';
@@ -35,7 +38,7 @@ create type complexity as enum ('EASILY', 'MEDIUM', 'HARD', 'VERY_HARD');
 
 create table recipe
 (
-    id           serial             primary key,
+    id           bigint             primary key default nextval('recipe_seq'::regclass),
     name         varchar            not null,
     description  varchar            not null,
     time_cooking timestamp          not null,
@@ -115,7 +118,7 @@ comment on column cuisine_recipe.name is 'Ссылка на cuisine';
 comment on column cuisine_recipe.recipe_id is 'Ссылка на recipe';
 
 create table step_cooking (
-    id              serial              primary key,
+    id              bigint              primary key default nextval('step_cooking_seq'::regclass),
     recipe_id       bigint              references recipe(id),
     description     varchar             not null,
     picture_name    varchar             references picture(name)
