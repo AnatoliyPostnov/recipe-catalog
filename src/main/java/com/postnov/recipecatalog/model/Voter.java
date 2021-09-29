@@ -7,16 +7,17 @@ import java.io.Serializable;
 
 @Data
 @Entity
+@Table(name = "voter")
 @IdClass(Voter.VoterPK.class)
 public class Voter {
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Recipe.class)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Recipe.class)
     @JoinColumn(name = "recipe_id", referencedColumnName = "id")
     private Recipe recipe;
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = RegistrationUser.class)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = RegistrationUser.class)
     @JoinColumn(name = "user_login", referencedColumnName = "login")
     private RegistrationUser registrationUser;
 

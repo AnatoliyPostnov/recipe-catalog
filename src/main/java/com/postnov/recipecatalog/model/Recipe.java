@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -38,7 +39,17 @@ public class Recipe {
     @Column(name = "rating", nullable = false)
     private Double rating;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Picture.class, orphanRemoval = true)
     @JoinColumn(name = "picture_name", referencedColumnName = "name", nullable = false)
     private Picture picture;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Cuisine.class)
+    @JoinTable(name = "cuisine_recipe",
+            joinColumns = @JoinColumn(name = "recipe_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "name", referencedColumnName = "name"))
+    private List<Cuisine> recipe;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = StepCooking.class, orphanRemoval = true)
+    @JoinColumn(name = "recipe_id")
+    private List<StepCooking> stepsCooking;
 }

@@ -16,3 +16,5 @@ spring:
       username: recipe_catalog
       password: recipe_catalog
       driver-class-name: org.postgresql.Driver
+server:
+  port: 8081
