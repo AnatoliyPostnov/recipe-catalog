@@ -20,6 +20,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation group: 'org.dominokit', name: 'domino-slf4j-logger', version: '1.0.2'
+	implementation group: 'com.github.paulcwarren', name: 'content-s3-spring-boot-starter', version: '1.2.5'
+	implementation group: 'com.github.paulcwarren', name: 'spring-content-rest-boot-starter', version: '1.2.5'
+	implementation 'com.github.paulcwarren:spring-content-renditions-boot-starter:1.2.2'
+	implementation 'com.github.paulcwarren:spring-content-solr-boot-starter:1.2.4'
 
 	runtimeOnly "org.flywaydb:flyway-core:$flywayVersion"
 	runtimeOnly 'org.postgresql:postgresql:42.2.9'

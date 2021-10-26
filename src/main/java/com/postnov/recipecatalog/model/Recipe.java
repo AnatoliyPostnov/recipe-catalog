@@ -33,9 +33,6 @@ public class Recipe {
     @Column(name = "complexity", nullable = false)
     private Complexity complexity;
 
-    @Column(name = "cuisine", nullable = false)
-    private String cuisine;
-
     @Column(name = "rating", nullable = false)
     private Double rating;
 
@@ -47,7 +44,7 @@ public class Recipe {
     @JoinTable(name = "cuisine_recipe",
             joinColumns = @JoinColumn(name = "recipe_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "name", referencedColumnName = "name"))
-    private List<Cuisine> recipe;
+    private List<Cuisine> cuisines;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = StepCooking.class, orphanRemoval = true)
     @JoinColumn(name = "recipe_id")

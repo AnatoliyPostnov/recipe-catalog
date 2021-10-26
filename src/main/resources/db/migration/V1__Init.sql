@@ -24,9 +24,11 @@ comment on column registration_user.password is 'Пароль пользоват
 comment on column registration_user.phone is 'Телефон пользователя';
 
 create table picture (
-    name        varchar             primary key,
-    path        varchar             not null,
-    extension   varchar             not null
+    name             varchar             primary key,
+    path             varchar             not null,
+    extension        varchar             not null,
+    content_length   bigint              not null,
+    mime_type        varchar             not null
 );
 
 comment on table picture is 'Метаинформация о картинке';
@@ -44,7 +46,6 @@ create table recipe
     time_cooking timestamp          not null,
     calories     varchar            not null,
     complexity   complexity         not null,
-    cuisine      varchar            not null,
     rating       double precision   not null default 0,
     picture_name varchar            references picture(name)
 );
@@ -56,7 +57,6 @@ comment on column recipe.description is 'Описание';
 comment on column recipe.time_cooking is 'Время приготовления';
 comment on column recipe.calories is 'Калории';
 comment on column recipe.complexity is 'Сложность, котороя может содержать одно из значений типа complexity';
-comment on column recipe.cuisine is 'Кухня';
 comment on column recipe.rating is 'Рейтинг рецепта';
 comment on column recipe.picture_name is 'Ссылка на картинку';
 
