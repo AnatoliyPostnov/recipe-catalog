@@ -16,7 +16,7 @@ public class PictureController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public void savePicture(@RequestPart("file") MultipartFile file) throws IOException {
+    public void savePicture(@RequestPart("file") MultipartFile file) {
         pictureService.savePicture(file);
     }
 }

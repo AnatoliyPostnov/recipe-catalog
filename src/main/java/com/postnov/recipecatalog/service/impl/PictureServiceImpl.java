@@ -30,9 +30,9 @@ public class PictureServiceImpl implements PictureService {
     @Override
     @Transactional
     public void savePicture(MultipartFile file) {
-        Objects.requireNonNull(file, "File not found: file is null");
-        String name = file.getName().concat(RandomStringUtils.random(randomStringSize));
-        String extension = file.getOriginalFilename();
+        String[] nameWithExtension = checkFileFormatAndReturnNameWithExtension(file);
+        String name = nameWithExtension[0].concat(RandomStringUtils.random(randomStringSize));
+        String extension = nameWithExtension[1];
         Optional<Picture> pictureOpt = repository.findById(name);
         if (pictureOpt.isEmpty()) {
             Picture picture = Picture
@@ -41,9 +41,19 @@ public class PictureServiceImpl implements PictureService {
                     .extension(extension)
                     .build();
             repository.save(picture);
-            pictureStore.saveFile(file, name + extension);
+            pictureStore.saveFile(file, name + "." + extension);
         } else {
             self.savePicture(file);
         }
+    }
+
+    private String[] checkFileFormatAndReturnNameWithExtension(MultipartFile file) {
+        Objects.requireNonNull(file, "File not found: file is null");
+        Objects.requireNonNull(file.getOriginalFilename(), "file.getOriginalFilename() is null");
+        String[] nameWithExtension = file.getOriginalFilename().split("\\.");
+        if (nameWithExtension.length != 2) {
+            throw new RuntimeException("Invalid input file format");
+        }
+        return nameWithExtension;
     }
 }

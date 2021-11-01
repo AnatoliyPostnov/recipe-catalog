@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.util.Objects;
 
 @Service
 public class PictureStoreImpl implements FileStore<Picture> {
@@ -17,7 +16,6 @@ public class PictureStoreImpl implements FileStore<Picture> {
 
     @Override
     public void saveFile(MultipartFile multipartFile, String name) {
-        Objects.requireNonNull(multipartFile, "File not found: file is null");
         File file = new File(System.getProperty("user.dir") + picturePath + name);
         try (OutputStream outputStream = new FileOutputStream(file);
              BufferedOutputStream stream = new BufferedOutputStream(outputStream)) {
