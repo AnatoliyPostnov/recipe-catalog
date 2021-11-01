@@ -25,16 +25,12 @@ comment on column registration_user.phone is 'Телефон пользоват�
 
 create table picture (
     name             varchar             primary key,
-    path             varchar             not null,
-    extension        varchar             not null,
-    content_length   bigint              not null,
-    mime_type        varchar             not null
+    extension        varchar             not null
 );
 
 comment on table picture is 'Метаинформация о картинке';
 comment on column picture.name is 'Название картинки (уникальное)';
-comment on column picture.path is 'Абсолютный путь к файлу';
-comment on column picture.extension is 'Расширение картинки';
+comment on column picture.extension is 'Расширение';
 
 create type complexity as enum ('EASILY', 'MEDIUM', 'HARD', 'VERY_HARD');
 

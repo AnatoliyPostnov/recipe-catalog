@@ -18,3 +18,8 @@ spring:
       driver-class-name: org.postgresql.Driver
 server:
   port: 8081
+
+application:
+  properties:
+    random-string-size: 10
+    picture-path: /src/main/resources/static/
