@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  #flyway properties only for local start
+  flyway:
+    enabled: true
+    table: schema_version
+    schemas: recipe_catalog
+  codec:
+    max-in-memory-size: 16MB
+  ##Database settings
+  datasource:
+    postgres:
+      url: jdbc:postgresql://localhost:5432/recipe_catalog
+      username: recipe_catalog
+      password: recipe_catalog
+      driver-class-name: org.postgresql.Driver
+server:
+  port: 8081
+
+application:
+  properties:
+    random-string-size: 10
+    picture-path: /src/main/resources/static/
